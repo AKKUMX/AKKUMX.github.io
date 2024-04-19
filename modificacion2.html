@@ -1,0 +1,37 @@
+<html lang="es">
+
+<head>
+
+  <title>Modificación 2</title>
+
+  <script type = "text/javascript">
+
+  function alertName() {
+    var user1= document.forms[0].user.value;
+    var paswd1= document.forms[0].paswd.value;
+
+    if(user1 && paswd1 == "admin"){
+        document.write("Acceso Permitido");
+    } else{
+        document.write("Acceso NO Permitido");
+    }
+
+    return true;
+  }
+
+  </script>
+</head>
+<body>
+
+<form id="myform" onsubmit="return alertName();">
+
+<p>Ususario <input id="user" name="user" type="text" /></p>
+<p>Password <input id="paswd" name="paswd" type="password" /></p>
+
+<p><input type="submit" /></p>
+
+</form>
+
+</body>
+
+</html>
