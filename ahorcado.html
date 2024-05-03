@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let cont = 0;
+
+        function dibujar(){
+            var palabra1 = document.forms[0].palabra.value;
+            const canvas = document.getElementById("myCanvas");
+            const ctx = canvas.getContext("2d");
+            const centerX = canvas.width / 2;
+
+            if(palabra1 == "empanadas"){
+                alert("Has acertado la palabra");
+            } else{
+                if(cont <= 6){
+                    cont++;
+                } else{
+                    alert("Se han acabado los intentos");
+                }
+                if(cont==1){
+                    //cabeza
+                    ctx.beginPath();
+                    ctx.arc(centerX,60,50,0,2*Math.PI);
+                    ctx.stroke();
+                }
+                if(cont==2){
+                    //cuerpo
+                    ctx.beginPath();
+                    ctx.moveTo(centerX,110);
+                    ctx.lineTo(centerX,310);
+                    ctx.stroke();
+                }
+                if(cont==3){
+                   //mano derecha
+                    ctx.beginPath();
+                    ctx.moveTo(centerX,110);
+                    ctx.lineTo(310,215);
+                    ctx.stroke();
+                }
+                if(cont==4){
+                     //mano izquierda
+                    ctx.beginPath();
+                    ctx.moveTo(centerX,110);
+                    ctx.lineTo(180,215);
+                    ctx.stroke();
+                }
+                if(cont==5){
+                    //pie derecho
+                    ctx.beginPath();
+                    ctx.moveTo(centerX,305);
+                    ctx.lineTo(310,410);
+                    ctx.stroke();
+                }
+                if(cont==6){
+                     //pie izquierdo
+                    ctx.beginPath();
+                    ctx.moveTo(centerX,305);
+                    ctx.lineTo(180,410);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        function limpiar(){
+            const canvas = document.getElementById("myCanvas");
+            const ctx = canvas.getContext("2d");
+            ctx.fillStyle = "white";
+            ctx.fillRect(0,0,500,800);
+            cont = 0;
+        }
+    </script>
+</head>
+<body>
+    <h1>Juego de Ahorcado</h1>
+    
+    <form id="myform">
+    <p>Dime la palabra: <input id="palabra" name="palabra" type="text"/></p>
+    </form>
+    <p><button onclick="dibujar()">Jugar</button></p>
+    <p><button onclick="limpiar()">Reset</button></p>
+    <canvas id="myCanvas" width="500" height="600" style="border: 1px solid;"></canvas>
+</body>
+</html>
