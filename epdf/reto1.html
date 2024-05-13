@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="js/jquery/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery/jquery-ui-1.8.17.custom.min.js"></script>
+	<script type="text/javascript" src="jspdf.js"></script>
+
+	<script type="text/javascript" src="jspdf.plugin.addimage.js"></script>
+
+	<script type="text/javascript" src="jspdf.plugin.standard_fonts_metrics.js"></script>
+	<script type="text/javascript" src="jspdf.plugin.split_text_to_size.js"></script>
+	<script type="text/javascript" src="jspdf.plugin.from_html.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <iframe frameborder="0" width="800" height="800"></iframe>
+    <script>
+        
+        var caracter = prompt('Ingresa un caracter');
+        var altura = prompt('Ingresa la altura:');
+        altura = parseInt(altura);
+
+        var doc = new jsPDF();
+
+        doc.setFontSize(12);
+        let x=20;
+        for(var i = 1; i <= altura; i ++) {
+            x = 20;
+            doc.text(x, (30 + (i * 10)), i+' ');
+            for(var j =1; j<= i; j++){
+                x += 5;
+                doc.text(x, (30 + (i * 10)), caracter);
+            }
+        }
+        doc.text(20, 30, 'Pedro Damian Jasso');
+        
+        var string = doc.output('datauristring');
+
+        $('iframe').attr('src', string);
+    </script>
+</body>
+</html>
